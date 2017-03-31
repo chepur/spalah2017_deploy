@@ -1,0 +1,40 @@
+<ul id="comments-list" data-product_id="<%= @product.id %>"
+data-current_user_id="<%= current_user.id %>">
+  <% @comments.each do |com| %>
+    <% next unless com.persisted? %>
+  <li data-comment_id="<%= com.id %>">
+    <%= com.user.present? ? com.user.full_name : 'Guest' %> :
+    <%= com.text %>
+
+    <% if com.user.present? && com.user == current_user %>
+      <%= link_to 'Remove',
+                  product_comment_path(@product, com),
+                  method: :delete,
+                  class: 'btn btn-default',
+                  remote: true
+      %>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+
+
+<ul class="comment-errors">
+  <% if @comment.errors.present? %>
+    <% @comment.errors.messages.each do |field, messages| %>
+    <li><%= field %>: <%= messages.join('; ') %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+
+<%= form_for [@product, @comment], remote: true do |f| %>
+  <br>
+  <%= f.text_area :text, placeholder: 'Message' %>
+  <br>
+  <%= f.submit %>
+<% end %>
+<br>
+<a href="" class="test">CLICK ME!</a>
+<br>
+<span class="click-result">0</span>
