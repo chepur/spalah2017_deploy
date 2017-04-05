@@ -44,6 +44,9 @@ group :development, :test do
   gem 'pry-nav'
   gem 'awesome_print'
   gem 'sqlite3'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -60,6 +63,8 @@ group :development do
   gem 'capistrano-bundler', '~> 1.2'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-passenger'
+
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -81,3 +86,4 @@ gem 'rails-observers', github: 'rails/rails-observers'
 
 gem 'sidekiq'
 gem 'whenever', require: false
+gem 'redis-objects'

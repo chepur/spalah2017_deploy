@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :incr_view, only: [:show]
 
   def index
     # binding.pry
     # @per_page = params[:per_page].present? ? params[:per_page].to_i : 5
     @page = params[:page].present? ? params[:page].to_i : 1
 
-    @products = Product.page(@page)
+    @products = Product.order('updated_at DESC').page(@page)
   end
 
   def show
@@ -47,5 +48,9 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :price, images_attributes: [:id, :file, :_destroy])
+  end
+
+  def incr_view
+    @product.view.increment
   end
 end

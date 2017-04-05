@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  belongs_to :product
+  belongs_to :product, counter_cache: true
   belongs_to :user
 
   delegate :full_name, to: :user, prefix: true

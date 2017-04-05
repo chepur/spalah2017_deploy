@@ -1,8 +1,9 @@
 <ul>
-  <% @products.each do |product| %>
+  <% @products.includes(comments: [:user]).each do |product| %>
     <li>
       <%= link_to product.name, product_path(id: product.id) %>:
       <%= price_format(product.price) %>
+      (viewed: <%= product.view.value %>, comments <%= product.comments_count %>):
       |
       <%= link_to 'Delete', product_path(product), method: :delete %>
       <!--<a class="delete-product" href="<%= product_path(product) %>">Delete</a>-->
