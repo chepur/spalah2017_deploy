@@ -80,3 +80,4 @@ gem 'pusher'
 gem 'rails-observers', github: 'rails/rails-observers'
 
 gem 'sidekiq'
+gem 'whenever', require: false

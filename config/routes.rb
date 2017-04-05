@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
     # product_comment_path(product, comment)
     # product_comment_path(product_id: 123, comment_id: 3)
   end
+
+  mount Sidekiq::Web => '/sidekiq'
 
 
   # resources :comments # CRUD
