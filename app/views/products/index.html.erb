@@ -3,10 +3,20 @@
     <li>
       <%= link_to product.name, product_path(id: product.id) %>:
       <%= price_format(product.price) %>
-      (viewed: <%= product.view.value %>, comments <%= product.comments_count %>):
+      (viewed: <%= product.view.value %>, comments <%= product.comments_count %>:
       |
+      <span class="product-like">
+        <% if product.liked?(current_user) %>
+          <%= link_to unlike_product_likes_path(product), method: :put, remote: true do %>
+            Unlike! (<%= product.like_count %>)
+          <% end %>
+        <% else %>
+          <%= link_to like_product_likes_path(product), method: :put, remote: true do %>
+            Like! (<%= product.like_count %>)
+          <% end %>
+        <% end %>
+      </span>
       <%= link_to 'Delete', product_path(product), method: :delete %>
-      <!--<a class="delete-product" href="<%= product_path(product) %>">Delete</a>-->
     </li>
   <% end %>
 </ul>

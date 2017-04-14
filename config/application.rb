@@ -14,5 +14,7 @@ module Shop
 
     config.active_record.observers = :comment_observer
     config.active_job.queue_adapter = :sidekiq
+
+    config.autoload_paths += %W(#{config.root}/app/policy)
   end
 end

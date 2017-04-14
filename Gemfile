@@ -47,6 +47,8 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'faker'
 end
 
 group :development do
@@ -87,3 +89,9 @@ gem 'rails-observers', github: 'rails/rails-observers'
 gem 'sidekiq'
 gem 'whenever', require: false
 gem 'redis-objects'
+
+gem 'haml-rails'
+gem 'active_model_serializers'
+gem 'pundit'
+gem 'omniauth'
+gem 'omniauth-facebook'

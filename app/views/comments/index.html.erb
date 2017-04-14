@@ -6,12 +6,11 @@ data-current_user_id="<%= current_user.id %>">
     <%= com.user.present? ? com.user.full_name : 'Guest' %> :
     <%= com.text %>
 
-    <% if com.user.present? && com.user == current_user %>
+    <% if policy(com).destroy? %>
       <%= link_to 'Remove',
                   product_comment_path(@product, com),
                   method: :delete,
-                  class: 'btn btn-default',
-                  remote: true
+                  class: 'btn btn-default'
       %>
     <% end %>
   </li>

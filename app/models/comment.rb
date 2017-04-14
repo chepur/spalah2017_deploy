@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  belongs_to :product, counter_cache: true
+  belongs_to :product, counter_cache: true, touch: true
   belongs_to :user
 
   delegate :full_name, to: :user, prefix: true
@@ -9,15 +9,19 @@ class Comment < ApplicationRecord
 
   # after_commit :notify!
 
-  def as_json(_ = nil)
-    {
-      id: id,
-      product_id: product_id,
-      user_id: user_id,
-      text: text,
-      nick: user_full_name || 'Guest'
-    }
-  end
+  # after_touch do
+  #   product.touch if product.present?
+  # end
+  # after_commit do
+  #   product.touch
+  #   # product.update_attributes(name: '')
+  #   # product.update(name: '')
+  #   #
+  #   # product.update_column(:refreshed_at, Time.now)
+  #   # product.update_attribute(:refreshed_at, Time.now)
+  #
+  # end
+
 
   private
 

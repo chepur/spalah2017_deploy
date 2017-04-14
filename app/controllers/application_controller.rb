@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+
   protect_from_forgery with: :exception
 
   before_action :authenticate_user!
@@ -6,6 +8,10 @@ class ApplicationController < ActionController::Base
   before_action :before_some_method
   after_action :after_some_method
   # around_action :around_some_method
+
+  rescue_from ActiveRecord::RecordNotFound do
+    redirect_to root_path
+  end
 
   private
 

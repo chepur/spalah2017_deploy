@@ -4,13 +4,18 @@ class CommentsController < ApplicationController
   def index
     # binding.pry
     @comments = @product.comments
+    @comments = policy_scope(@comments)
+    unless current_user.admin?
+      @comments = @comments.where('created_at > ?', 3.days.ago)
+    end
     @comment = @product.comments.new
   end
 
   def destroy
     @comment = @product.comments.find_by(id: params[:id], user: current_user)
-    @comment.destroy if @comment.present?
-    head :no_content
+    authorize @comment
+    @comment.destroy
+    redirect_to product_comments_path(@product)
   end
 
   def create

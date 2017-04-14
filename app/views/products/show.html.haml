@@ -1,0 +1,26 @@
+%h3
+  = @product.name
+  \: #{@product.price} $
+#carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+  / Indicators
+  %ol.carousel-indicators
+    %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+  / Wrapper for slides
+  .carousel-inner{:role => "listbox"}
+    - @product.images.each_with_index do |image, index|
+      - next unless image.file_url
+      %div{:class => "item #{'active' if index == 0}"}
+        = image_tag(image.file_url, class: 'img-responsive')
+        .carousel-caption
+  / Controls
+  %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+    %span.sr-only Previous
+  %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+    %span.sr-only Next
+= link_to 'Edit', edit_product_path(@product), class: 'btn btn-primary'
+%br/
+= link_to 'Show comments', product_comments_path(@product)

@@ -6,6 +6,6 @@ class CommentObserver < ActiveRecord::Observer
                'comments.destroy'
              end
     # binding.pry
-    CommentJob.perform_later(action, comment.as_json)
+    # CommentJob.perform_later(action, comment.as_json)
   end
 end

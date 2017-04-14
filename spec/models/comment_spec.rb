@@ -15,9 +15,8 @@ describe Comment, type: :model do
 
   context '#full_name' do
     it do
-      binding.pry
-      build(:comment)
-      create(:comment)
+      # build(:comment)
+      # create(:comment)
     end
   end
 end

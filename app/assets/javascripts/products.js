@@ -4,6 +4,31 @@
 // $(document).ready(function() {});
 
 $(document).on('turbolinks:load', function() {
+  $('.product-like a').on('ajax:success', function(event, data) {
+    var $link = $(event.currentTarget);
+    if (data.success) {
+      var str;
+      var href;
+      switch (data.action) {
+        case 'like':
+          str = 'Unlike!';
+          href = data.unlike_path;
+          break;
+        case 'unlike':
+          str = 'Like!';
+          href = data.like_path;
+          break;
+      }
+
+      str = str + ' (' + data.count + ')';
+      $link.text(str);
+      $link.attr('href', href)
+    }
+    return false;
+  });
+
+
+
   $('a.remove-image').click(function(event) {
     var $target = $(event.currentTarget);
     var $block = $target.closest('.nested-fields');

@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :incr_view, only: [:show]
 
@@ -8,6 +9,12 @@ class ProductsController < ApplicationController
     @page = params[:page].present? ? params[:page].to_i : 1
 
     @products = Product.order('updated_at DESC').page(@page)
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @products
+      }
+    end
   end
 
   def show
@@ -32,9 +39,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    if request.xhr?
-      head :no_content
+    if @product.user == current_user
+      @product.destroy
+      if request.xhr?
+        head :no_content
+      else
+        redirect_to products_path
+      end
     else
       redirect_to products_path
     end

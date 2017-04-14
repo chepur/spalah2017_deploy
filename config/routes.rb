@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get '/auth/:provider/callback', to: 'sessions#create'
+
   devise_for :users
   root 'home#index'
 
@@ -12,9 +14,7 @@ Rails.application.routes.draw do
 
 
   resources :products do
-    get '/likes', to: 'c#a'
     collection do
-      get '/likes_collection', to: 'c#a'
       get :my # => /products/my
     end
     member do
@@ -24,6 +24,12 @@ Rails.application.routes.draw do
 
     resources :comments
     resources :images
+    resources :likes, only: [], defaults: { format: :json } do
+      collection do
+        put :like
+        put :unlike
+      end
+    end
     # params[:product_id], params[:id]
     # product_comment_path(product, comment)
     # product_comment_path(product_id: 123, comment_id: 3)
