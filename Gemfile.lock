@@ -1,4 +1,23 @@
 GIT
+  remote: https://github.com/activeadmin/activeadmin.git
+  revision: d4473e90787426833c8d261e8e9c864dd504e3ca
+  specs:
+    activeadmin (1.0.0.pre5)
+      arbre (>= 1.1.1)
+      bourbon
+      coffee-rails
+      formtastic (~> 3.1)
+      formtastic_i18n
+      inherited_resources (~> 1.7)
+      jquery-rails
+      jquery-ui-rails
+      kaminari (>= 0.15, < 2.0)
+      railties (>= 4.2, < 5.1)
+      ransack (~> 1.3)
+      sass-rails
+      sprockets (< 4.1)
+
+GIT
   remote: https://github.com/rails/rails-observers.git
   revision: 953b641013ae23d2f4f3fc1a5d56e77ef393d348
   specs:
@@ -53,6 +72,8 @@ GEM
     airbrussh (1.1.2)
       sshkit (>= 1.6.1, != 1.7.0)
     amq-protocol (2.1.0)
+    arbre (1.1.1)
+      activesupport (>= 3.0.0)
     arel (7.1.4)
     awesome_print (1.7.0)
     bcrypt (3.1.11)
@@ -65,6 +86,9 @@ GEM
     bootstrap-kaminari-views (0.0.5)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    bourbon (4.3.4)
+      sass (~> 3.4)
+      thor (~> 0.19)
     builder (3.2.3)
     bullet (5.5.1)
       activesupport (>= 3.0.0)
@@ -118,6 +142,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    domain_name (0.5.20170404)
+      unf (>= 0.0.5, < 1.0.0)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -134,6 +160,9 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
+    formtastic (3.1.5)
+      actionpack (>= 3.2.13)
+    formtastic_i18n (0.6.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -144,15 +173,25 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    has_scope (0.7.0)
+      actionpack (>= 4.1, < 5.1)
+      activesupport (>= 4.1, < 5.1)
     hashie (3.4.4)
     html2haml (2.1.0)
       erubis (~> 2.7.0)
       haml (~> 4.0)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     http_parser.rb (0.6.0)
     httpclient (2.8.2.3)
     i18n (0.8.1)
+    inherited_resources (1.7.1)
+      actionpack (>= 3.2, < 5.1)
+      has_scope (~> 0.6)
+      railties (>= 3.2, < 5.1)
+      responders
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -160,6 +199,8 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (6.0.1)
+      railties (>= 3.2.16)
     jsonapi-renderer (0.1.2)
     jwt (1.5.4)
     kaminari (0.17.0)
@@ -186,6 +227,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
+    netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -200,6 +242,9 @@ GEM
       rack (>= 1.0, < 3)
     omniauth-facebook (4.0.0)
       omniauth-oauth2 (~> 1.2)
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
@@ -210,6 +255,8 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    polyamorous (1.3.1)
+      activerecord (>= 3.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -255,6 +302,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
+    ransack (1.8.2)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.3)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
@@ -263,6 +316,10 @@ GEM
       redis (~> 3.3)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rest-client (2.0.1)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -329,6 +386,9 @@ GEM
     uglifier (3.1.1)
       execjs (>= 0.3.0, < 3)
     underscore-rails (1.8.3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.3)
     uniform_notifier (1.10.0)
     warden (1.2.6)
       rack (>= 1.0)
@@ -348,6 +408,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  activeadmin!
   awesome_print
   better_errors
   binding_of_caller
@@ -375,6 +436,7 @@ DEPENDENCIES
   mini_magick
   omniauth
   omniauth-facebook
+  omniauth-github
   paperclip (~> 5.0.0)
   pry-nav
   pry-rails
@@ -384,6 +446,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   rails-observers!
   redis-objects
+  rest-client
   rspec
   rspec-rails
   sass-rails (~> 5.0)

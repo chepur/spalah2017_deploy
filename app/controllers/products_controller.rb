@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
   before_action :incr_view, only: [:show]
 
   def index
-    # binding.pry
     # @per_page = params[:per_page].present? ? params[:per_page].to_i : 5
     @page = params[:page].present? ? params[:page].to_i : 1
 

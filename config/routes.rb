@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get '/auth/:provider/callback', to: 'sessions#create'
 
   devise_for :users
@@ -34,6 +36,11 @@ Rails.application.routes.draw do
     # product_comment_path(product, comment)
     # product_comment_path(product_id: 123, comment_id: 3)
   end
+
+  namespace :api, defaults: { format: :json } do
+    resources :products
+  end
+
 
   mount Sidekiq::Web => '/sidekiq'
 

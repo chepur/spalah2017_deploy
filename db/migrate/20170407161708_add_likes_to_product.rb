@@ -1,5 +1,5 @@
 class AddLikesToProduct < ActiveRecord::Migration[5.0]
   def change
-    add_column :products, :like, :text
+    add_column :api, :like, :text
   end
 end

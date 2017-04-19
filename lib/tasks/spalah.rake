@@ -1,5 +1,5 @@
 namespace :spalah do
-  namespace :products do
+  namespace :api do
     desc 'Fix comments count of product'
     task comments_count: :environment do
       Product.find_in_batches do |group|

@@ -95,3 +95,7 @@ gem 'active_model_serializers'
 gem 'pundit'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'rest-client'
+
+gem 'activeadmin', github: 'activeadmin'
