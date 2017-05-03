@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount MobileApi => '/api'
+  mount GrapeSwaggerRails::Engine => '/swagger'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get '/auth/:provider/callback', to: 'sessions#create'
@@ -13,6 +16,8 @@ Rails.application.routes.draw do
       get :me
     end
   end
+
+  resources :broadcasts, only: [:new, :create]
 
 
   resources :products do

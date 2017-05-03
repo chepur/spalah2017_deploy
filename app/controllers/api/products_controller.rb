@@ -1,7 +1,5 @@
-module Api
-  class ProductsController < ApplicationController
-    def index
-      @products = Product.all
-    end
+class Api::ProductsController < Api::ApplicationController
+  def index
+    @products = Product.page(params[:page]).per(params[:per])
   end
 end

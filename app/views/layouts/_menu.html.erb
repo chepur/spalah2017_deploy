@@ -4,9 +4,15 @@
       <% if user_signed_in? %>
         <%= link_to 'Products', products_path %>
       <% end %>
+      <% if user_signed_in? %>
+        <%= link_to 'Broadcast', new_broadcast_path %>
+      <% end %>
     </li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
+    <li>
+      <%= link_to next_locale[:name], current_path(lang: next_locale[:key]) %>
+    </li>
     <% if user_signed_in? %>
       <li>
         <%= link_to me_users_path do %>

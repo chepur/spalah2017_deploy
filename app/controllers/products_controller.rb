@@ -4,15 +4,16 @@ class ProductsController < ApplicationController
   before_action :incr_view, only: [:show]
 
   def index
+    @q = Product.ransack(params[:q])
+    @products = @q.result.order('updated_at DESC')
+
     # @per_page = params[:per_page].present? ? params[:per_page].to_i : 5
     @page = params[:page].present? ? params[:page].to_i : 1
 
-    @products = Product.order('updated_at DESC').page(@page)
+    @products = @products.page(@page)
     respond_to do |format|
       format.html
-      format.json {
-        render json: @products
-      }
+      format.json { render :index }
     end
   end
 
@@ -32,9 +33,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    Product.create(product_params)
+    @product = ProductService.create(product_params)
 
-    redirect_to products_path
+    respond_to do |format|
+      format.html { redirect_to product_path(@product) }
+      format.json { render :show }
+    end
   end
 
   def destroy

@@ -28,4 +28,17 @@ module ApplicationHelper
 
     raw result
   end
+
+  def next_locale
+    case I18n.locale
+    when :ru
+      { name: 'English', key: :en }
+    when :en
+      { name: 'Русский', key: :ru }
+    end
+  end
+
+  def current_path(options)
+    url_for(request.params.merge(options))
+  end
 end

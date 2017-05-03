@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   before_action :before_some_method
+  before_action :set_locale
   after_action :after_some_method
   # around_action :around_some_method
 
@@ -25,5 +26,9 @@ class ApplicationController < ActionController::Base
 
   def around_some_method
     puts 'around_action => some_method'
+  end
+
+  def set_locale
+    I18n.locale = params[:lang] if params[:lang]
   end
 end

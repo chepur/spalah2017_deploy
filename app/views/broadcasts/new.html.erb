@@ -1,0 +1,10 @@
+<% if @form.errors.present? %>
+  <%= @form.errors.messages %>
+<% end %>
+<%= form_for @form do |f| %>
+  <%= f.text_field :email %>
+  <br>
+  <%= f.text_area :body %>
+  <br>
+  <%= f.submit 'Send' %>
+<% end %>

@@ -1,0 +1,1 @@
+json.partial! 'product.json', product: @product

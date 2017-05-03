@@ -9,7 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'mysql2'
 # gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -49,6 +50,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
+  gem 'capybara'
+  gem 'selenium-webdriver', '2.53.4'
 end
 
 group :development do
@@ -67,6 +70,7 @@ group :development do
   gem 'capistrano-passenger'
 
   gem 'bullet'
+  gem 'letter_opener'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -99,3 +103,12 @@ gem 'omniauth-github'
 gem 'rest-client'
 
 gem 'activeadmin', github: 'activeadmin'
+
+gem 'grape'
+gem 'grape-entity'
+gem 'grape-swagger'
+gem 'grape-swagger-rails'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'figaro'
+gem 'dotenv-rails'
+gem 'rectify'
